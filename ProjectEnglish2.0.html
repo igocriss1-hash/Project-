@@ -1,0 +1,2158 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>English Grammar 7 класс | Мега-версия</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4fc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            color: #1e2b45;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 1300px;
+            background: white;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 20, 50, 0.15);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1d3557;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        h1 i { font-size: 2rem; }
+        
+        /* Профиль пользователя */
+        .user-profile {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: #eef4ff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 2px solid #e0e7f5;
+            z-index: 100;
+        }
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            background: linear-gradient(135deg, #1d3557, #4a6fa5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 2px solid #ffd700;
+            flex-shrink: 0;
+        }
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+        }
+        .user-name {
+            font-weight: 600;
+            color: #1d3557;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+        .user-level {
+            font-size: 0.85rem;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            padding: 3px 10px;
+            border-radius: 30px;
+            color: #1d3557;
+            font-weight: 700;
+            display: inline-block;
+            margin: 3px 0;
+            width: fit-content;
+        }
+        .user-coins {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: #b6571a;
+            font-weight: 600;
+        }
+        .user-coins i {
+            color: #ffd700;
+        }
+        .xp-bar {
+            width: 150px;
+            height: 8px;
+            background: #d0dff0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 3px 0;
+        }
+        .xp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ffa500);
+            transition: width 0.3s;
+        }
+        .xp-text {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        .user-login-btn {
+            background: #1d3557;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .user-logout-btn {
+            background: #b62a2a;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .main-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 80px 0 20px;
+            justify-content: center;
+        }
+        .main-btn {
+            background: #eef4ff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            color: #1d3557;
+        }
+        .main-btn.active { background: #1d3557; color: white; }
+        .main-btn.active i { color: white; }
+        .main-btn:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+        
+        .sub-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+        .sub-btn {
+            background: white;
+            border: 2px solid #e0e7f5;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #1e2b45;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .sub-btn.progress-30 { background: #e8f5e9; border-color: #a5d6a5; }
+        .sub-btn.progress-50 { background: #c8e6c9; border-color: #81c784; }
+        .sub-btn.progress-65 { background: #a5d6a7; border-color: #4caf50; }
+        .sub-btn.progress-75 { background: #66bb6a; border-color: #2e7d32; color: white; }
+        .sub-btn.progress-100 { background: #ffd700; border-color: #b6571a; color: #1d3557; font-weight: 700; }
+        .boss-btn.progress-100 { background: #1e88e5; border-color: #0d47a1; color: white; }
+        .sub-btn.active { background: #1d3557 !important; color: white !important; border-color: #1d3557 !important; }
+        .boss-btn.active { background: #b6571a !important; color: white !important; border-color: #b6571a !important; }
+        .boss-btn { background: #ffd700; border: 2px solid #b6571a; color: #b6571a; font-weight: 700; }
+        
+        .content-card { background: white; border-radius: 24px; padding: 20px; margin: 10px 0; border: 2px solid #e0e7f5; }
+        .theory-block { background: #eef4ff; border-radius: 20px; padding: 15px; margin: 10px 0; border-left: 6px solid #1d3557; }
+        .theory-title { font-size: 1.3rem; font-weight: 700; color: #1d3557; margin-bottom: 10px; }
+        .test-block { background: white; border-radius: 24px; padding: 20px; margin-top: 15px; border: 2px solid #e0e7f5; }
+        .question-card { background: #f8fbff; border-radius: 20px; padding: 18px; margin-bottom: 20px; border: 2px solid #d0dff0; }
+        .boss-card { border: 3px solid #b6571a; background: #fff5e6; }
+        .super-boss-card { border: 5px solid #ff0000; background: linear-gradient(135deg, #fff5e6, #ffe6e6); box-shadow: 0 0 20px rgba(255,0,0,0.3); }
+        .question-text { font-size: 1.2rem; font-weight: 600; color: #1d3557; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid #b8c9e5; }
+        .story-text { background: #eef4ff; padding: 18px; border-radius: 16px; margin-bottom: 20px; font-size: 1.1rem; line-height: 1.6; border: 2px solid #b8c9e5; }
+        .options { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .opt { background: white; padding: 12px 20px; border-radius: 40px; font-weight: 500; border: 2px solid #b8c9e5; cursor: pointer; flex: 1 1 calc(50% - 10px); min-width: 150px; text-align: center; color: #1e2b45; font-size: 0.95rem; }
+        .opt.selected { background: #1d3557; color: white; border-color: #1d3557; }
+        .input-answer { width: 100%; padding: 14px 20px; border-radius: 40px; border: 2px solid #b8c9e5; font-size: 1rem; margin: 10px 0; background: white; }
+        .input-answer:focus { outline: none; border-color: #1d3557; }
+        .btn { background: white; border: 2px solid #1d3557; padding: 12px 24px; border-radius: 40px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: #1d3557; font-size: 1rem; transition: 0.2s; }
+        .btn-primary { background: #1d3557; color: white; border: 2px solid #1d3557; }
+        .btn-success { background: #2a6e3b; color: white; border-color: #2a6e3b; }
+        .btn-gold { background: #ffd700; color: #1d3557; border-color: #b6571a; }
+        .btn-super { background: linear-gradient(135deg, #ff0000, #ff6666); color: white; border: 2px solid #b30000; }
+        .result-panel { background: #e8f0fe; border-radius: 20px; padding: 20px; margin-top: 20px; border: 2px solid #b8c9e5; }
+        
+        .irregular-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 10px; background: #f8fbff; padding: 20px; border-radius: 24px; max-height: 500px; overflow-y: auto; border: 2px solid #d0dff0; }
+        .verb-item { background: white; border-radius: 30px; padding: 12px 16px; border-left: 6px solid #1d3557; font-family: monospace; }
+        .verb-num { font-weight: 700; color: #1d3557; margin-right: 6px; }
+        
+        .start-section { margin: 30px 0; text-align: center; }
+        .start-test-btn { font-size: 1.3rem; padding: 16px 40px; border-radius: 60px; background: #1d3557; color: white; border: none; cursor: pointer; box-shadow: 0 15px 25px -8px #1d3557; margin-right: 10px; font-weight: 600; }
+        .finish-test-btn, .exit-btn { font-size: 1.1rem; padding: 12px 25px; border-radius: 50px; border: none; cursor: pointer; }
+        .finish-test-btn { background: #b6571a; color: white; }
+        .exit-btn { background: #6c757d; color: white; }
+        
+        .stats-panel { background: linear-gradient(135deg, #1d3557, #2a4270); color: white; border-radius: 20px; padding: 15px 20px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 700; }
+        .stat-label { font-size: 0.85rem; opacity: 0.9; }
+        
+        .difficulty-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; margin-left: 8px; }
+        .difficulty-easy { background: #2a6e3b; color: white; }
+        .difficulty-medium { background: #b6571a; color: white; }
+        .difficulty-hard { background: #b62a2a; color: white; }
+        .difficulty-boss { background: #4a1ab6; color: white; }
+        .difficulty-super { background: #ff0000; color: white; }
+        
+        .max-score { display: inline-block; background: #1d3557; color: white; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; margin-left: 10px; }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            max-width: 400px;
+            width: 90%;
+        }
+        .modal-title { font-size: 1.5rem; color: #1d3557; margin-bottom: 20px; }
+        .modal-input { width: 100%; padding: 12px 15px; border: 2px solid #e0e7f5; border-radius: 30px; margin-bottom: 15px; font-size: 1rem; }
+        .modal-btn { background: #1d3557; color: white; border: none; padding: 12px; border-radius: 30px; width: 100%; font-weight: 600; cursor: pointer; }
+        .modal-switch { text-align: center; margin-top: 15px; color: #1d3557; cursor: pointer; }
+        
+        /* Магазин */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .shop-item {
+            background: linear-gradient(135deg, #eef4ff, #ffffff);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid #ffd700;
+            text-align: center;
+            transition: 0.2s;
+        }
+        .shop-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .shop-item-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        .shop-item-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1d3557;
+            margin-bottom: 5px;
+        }
+        .shop-item-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .shop-item-price {
+            font-size: 1.5rem;
+            color: #b6571a;
+            margin: 10px 0;
+        }
+        .shop-item-price i {
+            color: #ffd700;
+        }
+        .shop-item button {
+            width: 100%;
+        }
+        
+        /* Игровое окно */
+        .game-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .game-window {
+            background: white;
+            border-radius: 40px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 5px solid #ffd700;
+        }
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .game-title {
+            font-size: 2rem;
+            color: #1d3557;
+        }
+        .game-close {
+            background: #b62a2a;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Memory Game */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .memory-card {
+            aspect-ratio: 1;
+            background: #1d3557;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+            user-select: none;
+        }
+        .memory-card.flipped {
+            background: #ffd700;
+            color: #1d3557;
+        }
+        .memory-card.matched {
+            background: #2a6e3b;
+            cursor: default;
+            opacity: 0.7;
+        }
+        
+        /* Hangman */
+        .hangman-drawing {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .hangman-base { width: 200px; height: 10px; background: #333; position: absolute; bottom: 0; }
+        .hangman-pole { width: 10px; height: 180px; background: #333; position: absolute; bottom: 0; left: 40px; }
+        .hangman-beam { width: 100px; height: 10px; background: #333; position: absolute; top: 20px; left: 40px; }
+        .hangman-rope { width: 5px; height: 30px; background: #666; position: absolute; top: 30px; left: 135px; }
+        .hangman-head { width: 40px; height: 40px; border: 5px solid #333; border-radius: 50%; position: absolute; top: 60px; left: 115px; display: none; }
+        .hangman-body { width: 5px; height: 60px; background: #333; position: absolute; top: 105px; left: 135px; display: none; }
+        .hangman-left-arm { width: 40px; height: 5px; background: #333; position: absolute; top: 125px; left: 100px; transform: rotate(45deg); display: none; }
+        .hangman-right-arm { width: 40px; height: 5px; background: #333; position: absolute; top: 125px; left: 135px; transform: rotate(-45deg); display: none; }
+        .hangman-left-leg { width: 40px; height: 5px; background: #333; position: absolute; top: 165px; left: 100px; transform: rotate(45deg); display: none; }
+        .hangman-right-leg { width: 40px; height: 5px; background: #333; position: absolute; top: 165px; left: 135px; transform: rotate(-45deg); display: none; }
+        
+        .hangman-word {
+            font-size: 3rem;
+            letter-spacing: 10px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .hangman-letters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .hangman-letter {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #1d3557;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: white;
+            user-select: none;
+        }
+        .hangman-letter.used {
+            background: #b62a2a;
+            color: white;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .hangman-letter.correct {
+            background: #2a6e3b;
+            color: white;
+        }
+        
+        /* Speed Run */
+        .speed-word {
+            font-size: 3rem;
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #eef4ff;
+            border-radius: 20px;
+        }
+        .speed-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+            border: 3px solid #1d3557;
+            border-radius: 50px;
+            margin: 20px 0;
+        }
+        .speed-timer {
+            font-size: 2rem;
+            text-align: center;
+            color: #b62a2a;
+        }
+        
+        .daily-reward {
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .reward-streak { font-size: 2rem; font-weight: 700; color: #1d3557; }
+        
+        .notebook {
+            background: #fff9e6;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #ffd700;
+        }
+        .notebook textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            border: 2px solid #e0e7f5;
+            border-radius: 15px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        
+        @media (max-width: 600px) {
+            .app-container { padding: 15px; }
+            h1 { font-size: 1.5rem; }
+            .user-profile { position: static; margin-top: 10px; width: 100%; }
+            .main-nav { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="app-container" id="app">
+    <h1><i class="fas fa-graduation-cap"></i> English Grammar 7 класс</h1>
+
+    <!-- Профиль пользователя -->
+    <div class="user-profile" v-if="currentUser">
+        <div class="user-avatar">{{currentUser[0].toUpperCase()}}</div>
+        <div class="user-info">
+            <div class="user-name">{{currentUser}}</div>
+            <div class="user-level">Уровень {{userLevel}}</div>
+            <div class="user-coins"><i class="fas fa-coins"></i> {{coins}}</div>
+            <div class="xp-bar">
+                <div class="xp-fill" :style="{width: (userXP % 100) + '%'}"></div>
+            </div>
+            <div class="xp-text">{{userXP % 100}}/100 XP</div>
+        </div>
+        <button class="user-logout-btn" @click="logout">Выйти</button>
+    </div>
+    <div class="user-profile" v-else>
+        <button class="user-login-btn" @click="showAuthModal = true">Войти</button>
+        <button class="user-login-btn" @click="showAuthModal = true; isRegister = true">Регистрация</button>
+    </div>
+
+    <!-- Ежедневная награда -->
+    <div class="daily-reward" v-if="currentUser">
+        <div class="reward-streak">{{dailyStreak}} 🔥</div>
+        <div style="flex:1;">
+            <h3>Ежедневная награда</h3>
+            <p>🔥 {{dailyStreak}} дней подряд — награда: +30 монет</p>
+        </div>
+        <button class="btn btn-gold" @click="claimDailyReward" :disabled="dailyClaimed">Получить</button>
+    </div>
+
+    <!-- Статистика прогресса -->
+    <div class="stats-panel">
+        <div class="stat-item">
+            <div class="stat-value">{{totalCompleted}}</div>
+            <div class="stat-label">Тестов пройдено</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">{{perfectCount}}/{{totalQuests}}</div>
+            <div class="stat-label">На 10/10</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">{{bossesDefeated}}/6</div>
+            <div class="stat-label">Боссов</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">{{superBossesDefeated}}/{{superBosses.length}}</div>
+            <div class="stat-label">Супер-боссов</div>
+        </div>
+    </div>
+
+    <!-- Главное меню -->
+    <div class="main-nav">
+        <button class="main-btn" :class="{active: main===1}" @click="setMain(1)" :disabled="isTestActive"><i class="fas fa-bolt"></i> Future</button>
+        <button class="main-btn" :class="{active: main===2}" @click="setMain(2)" :disabled="isTestActive"><i class="fas fa-clock"></i> Past S</button>
+        <button class="main-btn" :class="{active: main===3}" @click="setMain(3)" :disabled="isTestActive"><i class="fas fa-hourglass"></i> Past C</button>
+        <button class="main-btn" :class="{active: main===4}" @click="setMain(4)" :disabled="isTestActive"><i class="fas fa-book-open"></i> Теория</button>
+        <button class="main-btn" :class="{active: main===5}" @click="setMain(5)" :disabled="isTestActive"><i class="fas fa-list-ul"></i> Глаголы</button>
+        <button class="main-btn" :class="{active: main===6}" @click="setMain(6)" :disabled="isTestActive"><i class="fas fa-question"></i> Тексты</button>
+        <button class="main-btn" :class="{active: main===7}" @click="setMain(7)" :disabled="isTestActive"><i class="fas fa-exchange-alt"></i> Лексика</button>
+        <button class="main-btn" :class="{active: main===8}" @click="setMain(8)" :disabled="isTestActive"><i class="fas fa-gamepad"></i> Игры</button>
+        <button class="main-btn" :class="{active: main===9}" @click="setMain(9)" :disabled="isTestActive"><i class="fas fa-store"></i> Магазин</button>
+        <button class="main-btn" :class="{active: main===10}" @click="setMain(10)" :disabled="isTestActive"><i class="fas fa-skull"></i> Супер-боссы</button>
+    </div>
+
+    <!-- ТЕОРИЯ -->
+    <div class="content-card" v-if="main===4">
+        <h2>📘 Полная теория для 7 класса</h2>
+        <div class="theory-block"><div class="theory-title">Future Simple</div>will + V1. Вопрос: Will + подлежащее + V1? Отрицание: will not = won't</div>
+        <div class="theory-block"><div class="theory-title">Past Simple</div>Правильные: V+ed. Неправильные: 2 форма. Вопрос: Did + V1</div>
+        <div class="theory-block"><div class="theory-title">Past Continuous</div>was/were + V-ing</div>
+        <div class="theory-block"><div class="theory-title">Past Perfect</div>had + V3 (действие до другого действия в прошлом)</div>
+        <div class="theory-block"><div class="theory-title">Future Perfect</div>will have + V3 (действие завершится к моменту в будущем)</div>
+    </div>
+
+    <!-- FUTURE SIMPLE -->
+    <div v-if="main===1">
+        <div class="sub-nav">
+            <button v-for="n in 4" :key="n" class="sub-btn" :class="[getProgressClass('future'+n), {active: futureSub===n}, {'boss-btn': n===4}]" @click="futureSub=n" :disabled="futureTestActive">{{n===4 ? '👑 БОСС' : 'Тест '+n}}</button>
+        </div>
+        <div v-if="!futureTestActive && !futureTestFinished" class="content-card">
+            <p style="font-size: 1.2rem; text-align: center;">Выберите тему и нажмите «Начать тест»</p>
+            <div v-if="futureSub===1" class="theory-block">
+                <span class="difficulty-badge difficulty-easy">Легкий</span><span class="max-score" v-if="testScores['future1']">Макс: {{testScores['future1']}}%</span>
+                <p><b>Тест 1:</b> Базовые формы</p>
+            </div>
+            <div v-if="futureSub===2" class="theory-block">
+                <span class="difficulty-badge difficulty-medium">Средний</span><span class="max-score" v-if="testScores['future2']">Макс: {{testScores['future2']}}%</span>
+                <p><b>Тест 2:</b> If/When</p>
+            </div>
+            <div v-if="futureSub===3" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['future3']">Макс: {{testScores['future3']}}%</span>
+                <p><b>Тест 3:</b> Сложные случаи</p>
+            </div>
+            <div v-if="futureSub===4" class="boss-card" style="padding:15px;">
+                <span class="difficulty-badge difficulty-boss">БОСС</span><span class="max-score" v-if="testScores['future4']">Макс: {{testScores['future4']}}%</span>
+                <p><b>БОСС:</b> Future Perfect</p>
+            </div>
+        </div>
+        <div v-if="futureTestActive" class="test-block">
+            <div class="progress-indicator">{{futureSub===4 ? '👑 БОСС' : 'Future Simple'}}</div>
+            <div v-for="(item,i) in currentFutureBank" :key="i" class="question-card" :class="{'boss-card': futureSub===4}">
+                <div class="question-text">{{i+1}}. {{item.text}}</div>
+                <span class="difficulty-badge" :class="'difficulty-'+item.difficulty">{{item.difficulty}}</span>
+                <div v-if="item.type==='choice'" class="options">
+                    <div v-for="l in ['a','b','c']" class="opt" :class="{selected: futureAnswers[i] === l}" @click="!futureTestFinished && (futureAnswers[i] = l)">{{l}}) {{item[l]}}</div>
+                </div>
+                <input v-if="item.type==='input'" class="input-answer" v-model="futureInputs[i]" :disabled="futureTestFinished" placeholder="Ответ">
+            </div>
+        </div>
+        <div v-if="futureTestFinished" class="test-block"><div class="result-panel" v-html="futureTestResult"></div></div>
+    </div>
+
+    <!-- PAST SIMPLE -->
+    <div v-if="main===2">
+        <div class="sub-nav">
+            <button v-for="n in 6" :key="n" class="sub-btn" :class="[getProgressClass('past'+n), {active: pastSub===n}, {'boss-btn': n===6}]" @click="pastSub=n" :disabled="pastTestActive">{{n===6 ? '👑 БОСС' : 'Тест '+n}}</button>
+        </div>
+        <div v-if="!pastTestActive && !pastTestFinished" class="content-card">
+            <p style="font-size: 1.2rem; text-align: center;">Выберите тест и нажмите «Начать тест»</p>
+            <div v-if="pastSub===1" class="theory-block">
+                <span class="difficulty-badge difficulty-easy">Легкий</span><span class="max-score" v-if="testScores['past1']">Макс: {{testScores['past1']}}%</span>
+                <p><b>Тест 1:</b> Правильные глаголы</p>
+            </div>
+            <div v-if="pastSub===2" class="theory-block">
+                <span class="difficulty-badge difficulty-medium">Средний</span><span class="max-score" v-if="testScores['past2']">Макс: {{testScores['past2']}}%</span>
+                <p><b>Тест 2:</b> Неправильные глаголы</p>
+            </div>
+            <div v-if="pastSub===3" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['past3']">Макс: {{testScores['past3']}}%</span>
+                <p><b>Тест 3:</b> Смесь форм</p>
+            </div>
+            <div v-if="pastSub===4" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['past4']">Макс: {{testScores['past4']}}%</span>
+                <p><b>Тест 4:</b> Дополнительная практика</p>
+            </div>
+            <div v-if="pastSub===5" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['past5']">Макс: {{testScores['past5']}}%</span>
+                <p><b>Тест 5:</b> Отрицания и вопросы</p>
+            </div>
+            <div v-if="pastSub===6" class="boss-card" style="padding:15px;">
+                <span class="difficulty-badge difficulty-boss">БОСС</span><span class="max-score" v-if="testScores['past6']">Макс: {{testScores['past6']}}%</span>
+                <p><b>БОСС:</b> Past Perfect</p>
+            </div>
+        </div>
+        <div v-if="pastTestActive" class="test-block">
+            <div class="progress-indicator">{{pastSub===6 ? '👑 БОСС' : 'Past Simple'}}</div>
+            <div v-for="(item,i) in currentPastBank" :key="i" class="question-card" :class="{'boss-card': pastSub===6}">
+                <div class="question-text">{{i+1}}. {{item.text}}</div>
+                <span class="difficulty-badge" :class="'difficulty-'+item.difficulty">{{item.difficulty}}</span>
+                <input class="input-answer" v-model="pastInputs[i]" :disabled="pastTestFinished" placeholder="Ответ">
+            </div>
+        </div>
+        <div v-if="pastTestFinished" class="test-block"><div class="result-panel" v-html="pastTestResult"></div></div>
+    </div>
+
+    <!-- PAST CONTINUOUS -->
+    <div v-if="main===3">
+        <div class="sub-nav">
+            <button v-for="n in 6" :key="n" class="sub-btn" :class="[getProgressClass('cont'+n), {active: contSub===n}, {'boss-btn': n===6}]" @click="contSub=n" :disabled="contTestActive">{{n===6 ? '👑 БОСС' : 'Тест '+n}}</button>
+        </div>
+        <div v-if="!contTestActive && !contTestFinished" class="content-card">
+            <p style="font-size: 1.2rem; text-align: center;">Выберите тест и нажмите «Начать тест»</p>
+            <div v-if="contSub===1" class="theory-block">
+                <span class="difficulty-badge difficulty-easy">Легкий</span><span class="max-score" v-if="testScores['cont1']">Макс: {{testScores['cont1']}}%</span>
+                <p><b>Тест 1:</b> Простые утверждения</p>
+            </div>
+            <div v-if="contSub===2" class="theory-block">
+                <span class="difficulty-badge difficulty-medium">Средний</span><span class="max-score" v-if="testScores['cont2']">Макс: {{testScores['cont2']}}%</span>
+                <p><b>Тест 2:</b> Вопросы и отрицания</p>
+            </div>
+            <div v-if="contSub===3" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['cont3']">Макс: {{testScores['cont3']}}%</span>
+                <p><b>Тест 3:</b> Прерывание действий (when)</p>
+            </div>
+            <div v-if="contSub===4" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['cont4']">Макс: {{testScores['cont4']}}%</span>
+                <p><b>Тест 4:</b> Одновременные действия (while)</p>
+            </div>
+            <div v-if="contSub===5" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['cont5']">Макс: {{testScores['cont5']}}%</span>
+                <p><b>Тест 5:</b> Смешанные случаи</p>
+            </div>
+            <div v-if="contSub===6" class="boss-card" style="padding:15px;">
+                <span class="difficulty-badge difficulty-boss">БОСС</span><span class="max-score" v-if="testScores['cont6']">Макс: {{testScores['cont6']}}%</span>
+                <p><b>БОСС:</b> Past Perfect Continuous</p>
+            </div>
+        </div>
+        <div v-if="contTestActive" class="test-block">
+            <div class="progress-indicator">{{contSub===6 ? '👑 БОСС' : 'Past Continuous'}}</div>
+            <div v-for="(item,i) in currentContBank" :key="i" class="question-card" :class="{'boss-card': contSub===6}">
+                <div class="question-text">{{i+1}}. {{item.text}}</div>
+                <span class="difficulty-badge" :class="'difficulty-'+item.difficulty">{{item.difficulty}}</span>
+                <div v-if="item.type==='choice'" class="options">
+                    <div v-for="l in ['a','b','c']" class="opt" :class="{selected: contAnswers[i] === l}" @click="!contTestFinished && (contAnswers[i] = l)">{{l}}) {{item[l]}}</div>
+                </div>
+                <input v-if="item.type==='input'" class="input-answer" v-model="contInputs[i]" :disabled="contTestFinished" placeholder="Ответ">
+            </div>
+        </div>
+        <div v-if="contTestFinished" class="test-block"><div class="result-panel" v-html="contTestResult"></div></div>
+    </div>
+
+    <!-- НЕПРАВИЛЬНЫЕ ГЛАГОЛЫ -->
+    <div v-if="main===5">
+        <div class="sub-nav">
+            <button class="sub-btn" :class="{active: irrMode==='table'}" @click="irrMode='table'; irrPartSelected=false; irrTestActive=false;">📋 Таблица (91)</button>
+            <button v-for="n in 9" :key="n" class="sub-btn" :class="[getProgressClass('irr'+n), {active: irrMode==='test' && irrPart===n}]" @click="irrMode='test'; irrPart=n; irrPartSelected=true;">Тест {{n}}</button>
+            <button class="sub-btn boss-btn" :class="[getProgressClass('irrboss', true), {active: irrMode==='boss'}]" @click="irrMode='boss'; irrPartSelected=true;"><i class="fas fa-crown"></i> БОСС</button>
+        </div>
+        
+        <div class="irregular-grid" v-if="irrMode==='table'">
+            <div v-for="(v,idx) in irregularFull" :key="idx" class="verb-item">
+                <span class="verb-num">{{idx+1}}.</span> <b>{{v.base}}</b> — {{v.past}} — {{v.part}} <span style="color:#1d3557;">{{v.ru}}</span>
+            </div>
+        </div>
+        
+        <div v-if="irrMode==='test' && !irrTestActive && irrPartSelected" class="content-card">
+            <h3>Тест {{irrPart}}</h3>
+            <p><span class="difficulty-badge difficulty-easy">Легкий</span> <span class="max-score" v-if="testScores['irr'+irrPart]">Макс: {{testScores['irr'+irrPart]}}%</span></p>
+            <p><b>Глаголы:</b> {{irrFirstVerb(irrPart)}} – {{irrLastVerb(irrPart)}} ({{irrStart(irrPart)}}-{{irrEnd(irrPart)}})</p>
+            <p>Нажмите «Начать тест»</p>
+        </div>
+        
+        <div v-if="irrMode==='boss' && !irrTestActive" class="content-card boss-card">
+            <h3><i class="fas fa-crown"></i> БОСС: Самые хитрые глаголы</h3>
+            <p><span class="difficulty-badge difficulty-boss">БОСС</span> <span class="max-score" v-if="testScores['irrboss']">Макс: {{testScores['irrboss']}}%</span></p>
+            <p><b>Глаголы:</b> be – write (самые сложные)</p>
+        </div>
+        
+        <div v-if="(irrMode==='test' || irrMode==='boss') && irrTestActive">
+            <div class="test-block">
+                <div class="progress-indicator">{{irrMode==='boss' ? '👑 БОСС' : 'Тест '+irrPart}}</div>
+                <div v-for="(item,i) in irrTestQuestions" :key="i" class="question-card" :class="{'boss-card': irrMode==='boss'}">
+                    <div class="question-text">{{i+1}}. {{item.ru}}</div>
+                    <input class="input-answer" v-model="item.answer" :disabled="irrTestFinished" placeholder="Введите три формы: go went gone">
+                </div>
+                <div class="result-panel" v-html="irrTestResult" v-if="irrTestFinished"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ТЕКСТЫ -->
+    <div v-if="main===6">
+        <div class="sub-nav">
+            <button v-for="n in 6" :key="n" class="sub-btn" :class="[getProgressClass('text'+n), {active: textSub===n}, {'boss-btn': n===6}]" @click="textSub=n" :disabled="textTestActive">{{n===6 ? '👑 БОСС' : 'Текст '+n}}</button>
+        </div>
+        
+        <div v-if="!textTestActive && !textTestFinished" class="content-card">
+            <p style="font-size: 1.2rem; text-align: center;">Выберите текст и нажмите «Начать тест»</p>
+            <div v-if="textSub===1" class="theory-block">
+                <span class="difficulty-badge difficulty-easy">Легкий</span><span class="max-score" v-if="testScores['text1']">Макс: {{testScores['text1']}}%</span>
+                <p><b>Текст 1:</b> Путешествие в Лондон</p>
+            </div>
+            <div v-if="textSub===2" class="theory-block">
+                <span class="difficulty-badge difficulty-medium">Средний</span><span class="max-score" v-if="testScores['text2']">Макс: {{testScores['text2']}}%</span>
+                <p><b>Текст 2:</b> Находка</p>
+            </div>
+            <div v-if="textSub===3" class="theory-block">
+                <span class="difficulty-badge difficulty-medium">Средний</span><span class="max-score" v-if="testScores['text3']">Макс: {{testScores['text3']}}%</span>
+                <p><b>Текст 3:</b> Подруга из Испании</p>
+            </div>
+            <div v-if="textSub===4" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['text4']">Макс: {{testScores['text4']}}%</span>
+                <p><b>Текст 4:</b> Лох-Несское чудовище</p>
+            </div>
+            <div v-if="textSub===5" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span><span class="max-score" v-if="testScores['text5']">Макс: {{testScores['text5']}}%</span>
+                <p><b>Текст 5:</b> Великая Китайская стена</p>
+            </div>
+            <div v-if="textSub===6" class="boss-card" style="padding:15px;">
+                <span class="difficulty-badge difficulty-boss">БОСС</span><span class="max-score" v-if="testScores['text6']">Макс: {{testScores['text6']}}%</span>
+                <p><b>БОСС:</b> Древняя цивилизация</p>
+            </div>
+        </div>
+        
+        <div v-if="textTestActive" class="test-block">
+            <div class="progress-indicator">{{textSub===6 ? '👑 БОСС' : 'Текст '+textSub}}</div>
+            <div class="story-text">{{ currentTextBank.story }}</div>
+            <div v-for="(item,i) in currentTextBank.questions" :key="i" class="question-card" :class="{'boss-card': textSub===6}">
+                <div class="question-text">{{i+1}}. {{item.question}}</div>
+                <span class="difficulty-badge" :class="'difficulty-'+item.difficulty">{{item.difficulty}}</span>
+                <div class="options">
+                    <div v-for="opt in item.options" :key="opt" class="opt" :class="{selected: textAnswers[i] === opt}" @click="!textTestFinished && (textAnswers[i] = opt)">{{opt}}</div>
+                </div>
+            </div>
+        </div>
+        <div v-if="textTestFinished" class="test-block"><div class="result-panel" v-html="textTestResult"></div></div>
+    </div>
+
+    <!-- ЛЕКСИКА С ТЕОРИЕЙ -->
+    <div v-if="main===7">
+        <div class="sub-nav">
+            <button v-for="n in 11" :key="n" class="sub-btn" :class="[getProgressClass('vocab'+n), {active: vocabSub===n}, {'boss-btn': n===11}]" @click="vocabSub=n" :disabled="vocabTestActive">{{n===11 ? '👑 БОСС' : 'Тест '+n}}</button>
+        </div>
+        
+        <div v-if="!vocabTestActive && !vocabTestFinished" class="content-card">
+            <p style="font-size: 1.2rem; text-align: center;">Выберите тест и нажмите «Начать тест»</p>
+            
+            <div v-if="vocabSub===1" class="theory-block">
+                <span class="difficulty-badge difficulty-easy">Легкий</span>
+                <span class="max-score" v-if="testScores['vocab1']">Макс: {{testScores['vocab1']}}%</span>
+                <h3>📚 Тест 1: Школьные предметы</h3>
+                <p>математика, история, география, биология, физика, химия, литература, физкультура, искусство, музыка</p>
+            </div>
+            
+            <div v-if="vocabSub===2" class="theory-block">
+                <span class="difficulty-badge difficulty-medium">Средний</span>
+                <span class="max-score" v-if="testScores['vocab2']">Макс: {{testScores['vocab2']}}%</span>
+                <h3>👨‍⚕️ Тест 2: Профессии</h3>
+                <p>врач, учитель, инженер, программист, журналист, переводчик, архитектор, юрист, пилот, ученый</p>
+            </div>
+            
+            <div v-if="vocabSub===3" class="theory-block">
+                <span class="difficulty-badge difficulty-medium">Средний</span>
+                <span class="max-score" v-if="testScores['vocab3']">Макс: {{testScores['vocab3']}}%</span>
+                <h3>🎨 Тест 3: Хобби</h3>
+                <p>рисование, фотография, рыбалка, путешествия, коллекционирование, шитье, вязание, садоводство, кулинария</p>
+            </div>
+            
+            <div v-if="vocabSub===4" class="theory-block">
+                <span class="difficulty-badge difficulty-medium">Средний</span>
+                <span class="max-score" v-if="testScores['vocab4']">Макс: {{testScores['vocab4']}}%</span>
+                <h3>😊 Тест 4: Эмоции</h3>
+                <p>счастье, грусть, злость, страх, удивление, волнение, скука, гордость, зависть</p>
+            </div>
+            
+            <div v-if="vocabSub===5" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span>
+                <span class="max-score" v-if="testScores['vocab5']">Макс: {{testScores['vocab5']}}%</span>
+                <h3>🧑‍🤝‍🧑 Тест 5: Характер</h3>
+                <p>дружелюбный, застенчивый, общительный, ленивый, трудолюбивый, честный, щедрый, эгоистичный, терпеливый, нервный</p>
+            </div>
+            
+            <div v-if="vocabSub===6" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span>
+                <span class="max-score" v-if="testScores['vocab6']">Макс: {{testScores['vocab6']}}%</span>
+                <h3>✈️ Тест 6: Путешествия</h3>
+                <p>аэропорт, билет, багаж, паспорт, виза, отель, бронирование, путеводитель</p>
+            </div>
+            
+            <div v-if="vocabSub===7" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span>
+                <span class="max-score" v-if="testScores['vocab7']">Макс: {{testScores['vocab7']}}%</span>
+                <h3>💻 Тест 7: Технологии</h3>
+                <p>компьютер, ноутбук, смартфон, интернет, сайт, приложение, пароль, электронная почта</p>
+            </div>
+            
+            <div v-if="vocabSub===8" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span>
+                <span class="max-score" v-if="testScores['vocab8']">Макс: {{testScores['vocab8']}}%</span>
+                <h3>🌍 Тест 8: Окружающая среда</h3>
+                <p>окружающая среда, природа, загрязнение, переработка, климат, глобальное потепление, вымирание</p>
+            </div>
+            
+            <div v-if="vocabSub===9" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span>
+                <span class="max-score" v-if="testScores['vocab9']">Макс: {{testScores['vocab9']}}%</span>
+                <h3>💊 Тест 9: Здоровье</h3>
+                <p>здоровье, болезнь, симптом, лекарство, больница, поликлиника, диета, упражнения</p>
+            </div>
+            
+            <div v-if="vocabSub===10" class="theory-block">
+                <span class="difficulty-badge difficulty-hard">Сложный</span>
+                <span class="max-score" v-if="testScores['vocab10']">Макс: {{testScores['vocab10']}}%</span>
+                <h3>📺 Тест 10: СМИ</h3>
+                <p>новости, газета, журнал, телевидение, радио, статья, интервью, реклама</p>
+            </div>
+            
+            <div v-if="vocabSub===11" class="boss-card" style="padding:15px;">
+                <span class="difficulty-badge difficulty-boss">БОСС</span>
+                <span class="max-score" v-if="testScores['vocab11']">Макс: {{testScores['vocab11']}}%</span>
+                <h3>👑 БОСС: Абстрактные существительные</h3>
+                <p>достижение, поведение, соревнование, развитие, оборудование, правительство, информация, знание, возможность, ситуация</p>
+            </div>
+            
+            <button class="btn btn-primary" @click="startVocabTest" style="margin-top:20px; width:100%;">Начать тест</button>
+        </div>
+        
+        <div v-if="vocabTestActive" class="test-block">
+            <div class="progress-indicator">{{vocabSub===11 ? '👑 БОСС' : 'Тест '+vocabSub}}</div>
+            <div v-for="(item,i) in currentVocabBank" :key="i" class="question-card" :class="{'boss-card': vocabSub===11}">
+                <div class="question-text">{{i+1}}. {{item.ru}}</div>
+                <input class="input-answer" v-model="vocabInputs[i]" :disabled="vocabTestFinished" placeholder="Перевод">
+            </div>
+        </div>
+        
+        <div v-if="vocabTestFinished" class="test-block"><div class="result-panel" v-html="vocabTestResult"></div></div>
+    </div>
+
+    <!-- МАГАЗИН -->
+    <div v-if="main===9">
+        <h2>🛒 Магазин</h2>
+        <p>У тебя <strong>{{coins}}</strong> <i class="fas fa-coins" style="color:#ffd700;"></i> монет</p>
+        
+        <div class="shop-grid">
+            <div class="shop-item">
+                <div class="shop-item-icon"><i class="fas fa-star"></i></div>
+                <div class="shop-item-title">Подсказка в тесте</div>
+                <div class="shop-item-desc">Показывает правильный ответ на один вопрос</div>
+                <div class="shop-item-price"><i class="fas fa-coins"></i> 100</div>
+                <button class="btn" @click="buyItem('hint')" :disabled="coins < 100">Купить</button>
+            </div>
+            
+            <div class="shop-item">
+                <div class="shop-item-icon"><i class="fas fa-bolt"></i></div>
+                <div class="shop-item-title">Двойные монеты</div>
+                <div class="shop-item-desc">×2 монет за следующий тест</div>
+                <div class="shop-item-price"><i class="fas fa-coins"></i> 200</div>
+                <button class="btn" @click="buyItem('double')" :disabled="coins < 200">Купить</button>
+            </div>
+            
+            <div class="shop-item">
+                <div class="shop-item-icon"><i class="fas fa-heart"></i></div>
+                <div class="shop-item-title">Доп. попытка</div>
+                <div class="shop-item-desc">+1 жизнь в игре "Виселица"</div>
+                <div class="shop-item-price"><i class="fas fa-coins"></i> 80</div>
+                <button class="btn" @click="buyItem('life')" :disabled="coins < 80">Купить</button>
+            </div>
+            
+            <div class="shop-item">
+                <div class="shop-item-icon"><i class="fas fa-clock"></i></div>
+                <div class="shop-item-title">Доп. время</div>
+                <div class="shop-item-desc">+3 секунды в Speed Run</div>
+                <div class="shop-item-price"><i class="fas fa-coins"></i> 100</div>
+                <button class="btn" @click="buyItem('time')" :disabled="coins < 100">Купить</button>
+            </div>
+            
+            <div class="shop-item">
+                <div class="shop-item-icon"><i class="fas fa-gem"></i></div>
+                <div class="shop-item-title">Золотая тема</div>
+                <div class="shop-item-desc">Золотая аватарка в профиле</div>
+                <div class="shop-item-price"><i class="fas fa-coins"></i> 500</div>
+                <button class="btn" @click="buyItem('theme')" :disabled="coins < 500">Купить</button>
+            </div>
+            
+            <div class="shop-item">
+                <div class="shop-item-icon"><i class="fas fa-skull"></i></div>
+                <div class="shop-item-title">Супер-босс Future</div>
+                <div class="shop-item-desc">Ультра-сложный тест Future</div>
+                <div class="shop-item-price"><i class="fas fa-coins"></i> 1000</div>
+                <button class="btn" @click="buyItem('superFuture')" :disabled="coins < 1000 || superBosses[0].unlocked">Купить</button>
+            </div>
+            
+            <div class="shop-item">
+                <div class="shop-item-icon"><i class="fas fa-dragon"></i></div>
+                <div class="shop-item-title">Супер-босс Past</div>
+                <div class="shop-item-desc">Ультра-сложный тест Past</div>
+                <div class="shop-item-price"><i class="fas fa-coins"></i> 1000</div>
+                <button class="btn" @click="buyItem('superPast')" :disabled="coins < 1000 || superBosses[1].unlocked">Купить</button>
+            </div>
+        </div>
+        
+        <div class="theory-block" v-if="activeBonuses.length > 0">
+            <h3>🎁 Активные бонусы:</h3>
+            <div v-for="(bonus, index) in activeBonuses" :key="index">
+                • {{bonus.name}} (осталось: {{bonus.uses}})
+            </div>
+        </div>
+    </div>
+
+    <!-- СУПЕР-БОССЫ -->
+    <div v-if="main===10">
+        <h2>👾 Супер-боссы</h2>
+        <p>Ультра-сложные тесты, которые можно купить в магазине</p>
+        
+        <div class="shop-grid">
+            <div v-for="(boss, index) in superBosses" :key="index" class="shop-item" :class="{'super-boss-card': boss.unlocked}">
+                <div class="shop-item-icon"><i class="fas fa-skull"></i></div>
+                <div class="shop-item-title">{{boss.name}}</div>
+                <div class="shop-item-desc">{{boss.desc}}</div>
+                <div v-if="boss.unlocked">
+                    <span class="difficulty-badge difficulty-super">Куплен</span>
+                    <button class="btn btn-super" @click="startSuperBoss(index)" style="margin-top:10px;">Сразиться</button>
+                </div>
+                <div v-else>
+                    <span class="difficulty-badge difficulty-boss">Закрыт</span>
+                    <div class="shop-item-price"><i class="fas fa-coins"></i> 1000</div>
+                </div>
+            </div>
+        </div>
+        
+        <div v-if="superBossActive" class="test-block super-boss-card">
+            <div class="progress-indicator">👾 СУПЕР-БОСС: {{currentSuperBoss.name}}</div>
+            <div v-for="(item,i) in currentSuperBoss.questions" :key="i" class="question-card">
+                <div class="question-text">{{i+1}}. {{item.text}}</div>
+                <span class="difficulty-badge difficulty-super">СУПЕР</span>
+                <div v-if="item.type==='choice'" class="options">
+                    <div v-for="l in ['a','b','c','d']" class="opt" :class="{selected: superAnswers[i] === l}" @click="!superFinished && (superAnswers[i] = l)">{{l}}) {{item[l]}}</div>
+                </div>
+                <input v-if="item.type==='input'" class="input-answer" v-model="superInputs[i]" :disabled="superFinished" placeholder="Ответ">
+            </div>
+            <button class="btn btn-super" @click="finishSuperBoss" :disabled="superFinished">Завершить битву</button>
+            <div class="result-panel" v-html="superResult" v-if="superFinished"></div>
+        </div>
+    </div>
+
+    <!-- ИГРЫ -->
+    <div v-if="main===8">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px;">
+            <div class="game-card" @click="openGame('memory')">
+                <i class="fas fa-brain" style="font-size:3rem;"></i>
+                <h3>Memory Match</h3>
+                <p>Найди пары слов (10 пар)</p>
+                <p>Награда: 10-30 монет</p>
+            </div>
+            <div class="game-card" @click="openGame('hangman')">
+                <i class="fas fa-horse" style="font-size:3rem;"></i>
+                <h3>Виселица</h3>
+                <p>Угадай слово (7 попыток)</p>
+                <p>Награда: 15-40 монет</p>
+            </div>
+            <div class="game-card" @click="openGame('speed')">
+                <i class="fas fa-tachometer-alt" style="font-size:3rem;"></i>
+                <h3>Speed Run</h3>
+                <p>Введи слово за 4 секунды</p>
+                <p>Награда: 5-20 монет</p>
+            </div>
+            <div class="game-card" @click="openGame('quiz')">
+                <i class="fas fa-question-circle" style="font-size:3rem;"></i>
+                <h3>Быстрый опрос</h3>
+                <p>10 вопросов подряд</p>
+                <p>Награда: 20-50 монет</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Игровое окно -->
+    <div v-if="gameActive" class="game-overlay" @click.self="closeGame">
+        <div class="game-window">
+            <div class="game-header">
+                <div class="game-title">{{gameTitle}}</div>
+                <button class="game-close" @click="closeGame">✕</button>
+            </div>
+            
+            <!-- Memory Game -->
+            <div v-if="currentGame === 'memory'">
+                <div class="memory-grid">
+                    <div v-for="(card, index) in memoryCards" :key="index" 
+                         class="memory-card" 
+                         :class="{flipped: card.flipped, matched: card.matched}"
+                         @click="flipCard(index)">
+                        {{card.flipped || card.matched ? card.word : '?'}}
+                    </div>
+                </div>
+                <p>Найдено пар: {{memoryMatched}}/10</p>
+                <button class="btn" @click="resetMemory">Новая игра</button>
+            </div>
+            
+            <!-- Hangman -->
+            <div v-if="currentGame === 'hangman'">
+                <div class="hangman-drawing">
+                    <div class="hangman-base"></div>
+                    <div class="hangman-pole"></div>
+                    <div class="hangman-beam"></div>
+                    <div class="hangman-rope"></div>
+                    <div class="hangman-head" :style="{display: hangmanAttempts <= 6 ? 'block' : 'none'}"></div>
+                    <div class="hangman-body" :style="{display: hangmanAttempts <= 5 ? 'block' : 'none'}"></div>
+                    <div class="hangman-left-arm" :style="{display: hangmanAttempts <= 4 ? 'block' : 'none'}"></div>
+                    <div class="hangman-right-arm" :style="{display: hangmanAttempts <= 3 ? 'block' : 'none'}"></div>
+                    <div class="hangman-left-leg" :style="{display: hangmanAttempts <= 2 ? 'block' : 'none'}"></div>
+                    <div class="hangman-right-leg" :style="{display: hangmanAttempts <= 1 ? 'block' : 'none'}"></div>
+                </div>
+                <div class="hangman-word">{{hangmanDisplay}}</div>
+                <p>Осталось попыток: {{hangmanAttempts}}</p>
+                <div class="hangman-letters">
+                    <div v-for="letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" 
+                         class="hangman-letter" 
+                         :class="{used: hangmanGuessed.includes(letter), correct: hangmanCorrect.includes(letter)}"
+                         @click="guessLetter(letter)">
+                        {{letter}}
+                    </div>
+                </div>
+                <button class="btn" @click="resetHangman">Новое слово</button>
+            </div>
+            
+            <!-- Speed Run -->
+            <div v-if="currentGame === 'speed'">
+                <div class="speed-word">{{speedWord.ru}}</div>
+                <input class="speed-input" v-model="speedAnswer" @keyup.enter="checkSpeed" placeholder="Введите перевод">
+                <div class="speed-timer">{{speedTime}}с</div>
+                <button class="btn" @click="resetSpeed">Новое слово</button>
+            </div>
+            
+            <!-- Quiz -->
+            <div v-if="currentGame === 'quiz'">
+                <div class="question-card">
+                    <div class="question-text">{{quizQuestion}}</div>
+                    <div class="options">
+                        <div v-for="opt in quizOptions" :key="opt" class="opt" @click="checkQuiz(opt)">{{opt}}</div>
+                    </div>
+                </div>
+                <p>Правильных ответов: {{quizScore}}/10</p>
+                <button class="btn" @click="resetQuiz">Новая игра</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- БЛОКНОТ -->
+    <div v-if="currentUser && !isTestActive && !gameActive && main !== 9 && main !== 10" class="notebook">
+        <h3><i class="fas fa-book"></i> Мой словарик ошибок</h3>
+        <textarea v-model="errorNotes" placeholder="Записывай сюда слова, в которых часто ошибаешься..."></textarea>
+        <button class="btn" @click="saveErrorNotes">Сохранить</button>
+    </div>
+
+    <!-- КНОПКИ -->
+    <div class="start-section">
+        <button class="start-test-btn" @click="startCurrentTest" v-if="!isTestActive && !anyTestFinished && main !== 4 && main !== 8 && main !== 9 && main !== 10">▶ Начать тест</button>
+        <button class="finish-test-btn" @click="finishCurrentTest" v-if="isTestActive && !anyTestFinished">⏹ Завершить</button>
+        <button class="exit-btn" @click="exitCurrentTest" v-if="anyTestFinished">✕ Выйти</button>
+    </div>
+
+    <!-- Кнопка сброса -->
+    <div style="text-align:center; margin-top:20px;">
+        <button style="background:none; border:none; color:#999; cursor:pointer; text-decoration:underline;" @click="showResetConfirm">Сбросить прогресс</button>
+    </div>
+
+    <!-- Модальное окно авторизации -->
+    <div v-if="showAuthModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">{{isRegister ? 'Регистрация' : 'Вход'}}</div>
+            <input class="modal-input" v-model="authUsername" placeholder="Имя пользователя">
+            <input class="modal-input" v-model="authPassword" type="password" placeholder="Пароль">
+            <button class="modal-btn" @click="handleAuth">{{isRegister ? 'Зарегистрироваться' : 'Войти'}}</button>
+            <div class="modal-switch" @click="isRegister = !isRegister">
+                {{isRegister ? 'Уже есть аккаунт? Войти' : 'Нет аккаунта? Зарегистрироваться'}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-note">
+        <i class="far fa-copyright"></i> Игорь Сотников — гл.разработчик · Вика Ульянова — бета-тестер
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    // ПОЛНАЯ ТАБЛИЦА НЕПРАВИЛЬНЫХ (91 глагол)
+    const irregularFull = [
+        {base:'be',past:'was/were',part:'been',ru:'быть'},{base:'bear',past:'bore',part:'borne',ru:'носить'},{base:'beat',past:'beat',part:'beaten',ru:'бить'},
+        {base:'become',past:'became',part:'become',ru:'становиться'},{base:'begin',past:'began',part:'begun',ru:'начинать'},{base:'bite',past:'bit',part:'bitten',ru:'кусать'},
+        {base:'blow',past:'blew',part:'blown',ru:'дуть'},{base:'break',past:'broke',part:'broken',ru:'ломать'},{base:'bring',past:'brought',part:'brought',ru:'приносить'},
+        {base:'build',past:'built',part:'built',ru:'строить'},{base:'burn',past:'burnt',part:'burnt',ru:'гореть'},{base:'burst',past:'burst',part:'burst',ru:'взрываться'},
+        {base:'buy',past:'bought',part:'bought',ru:'покупать'},{base:'catch',past:'caught',part:'caught',ru:'ловить'},{base:'choose',past:'chose',part:'chosen',ru:'выбирать'},
+        {base:'come',past:'came',part:'come',ru:'приходить'},{base:'cost',past:'cost',part:'cost',ru:'стоить'},{base:'cut',past:'cut',part:'cut',ru:'резать'},
+        {base:'deal',past:'dealt',part:'dealt',ru:'иметь дело'},{base:'dig',past:'dug',part:'dug',ru:'копать'},{base:'do',past:'did',part:'done',ru:'делать'},
+        {base:'draw',past:'drew',part:'drawn',ru:'рисовать'},{base:'dream',past:'dreamt',part:'dreamt',ru:'мечтать'},{base:'drink',past:'drank',part:'drunk',ru:'пить'},
+        {base:'drive',past:'drove',part:'driven',ru:'водить'},{base:'eat',past:'ate',part:'eaten',ru:'есть'},{base:'fall',past:'fell',part:'fallen',ru:'падать'},
+        {base:'feel',past:'felt',part:'felt',ru:'чувствовать'},{base:'fight',past:'fought',part:'fought',ru:'бороться'},{base:'find',past:'found',part:'found',ru:'находить'},
+        {base:'fly',past:'flew',part:'flown',ru:'летать'},{base:'forget',past:'forgot',part:'forgotten',ru:'забывать'},{base:'forgive',past:'forgave',part:'forgiven',ru:'прощать'},
+        {base:'freeze',past:'froze',part:'frozen',ru:'замерзать'},{base:'get',past:'got',part:'got',ru:'получать'},{base:'give',past:'gave',part:'given',ru:'давать'},
+        {base:'go',past:'went',part:'gone',ru:'идти'},{base:'have',past:'had',part:'had',ru:'иметь'},{base:'hear',past:'heard',part:'heard',ru:'слышать'},
+        {base:'hide',past:'hid',part:'hidden',ru:'прятать'},{base:'hold',past:'held',part:'held',ru:'держать'},{base:'hurt',past:'hurt',part:'hurt',ru:'ранить'},
+        {base:'keep',past:'kept',part:'kept',ru:'хранить'},{base:'know',past:'knew',part:'known',ru:'знать'},{base:'lead',past:'led',part:'led',ru:'вести'},
+        {base:'learn',past:'learnt',part:'learnt',ru:'учить'},{base:'leave',past:'left',part:'left',ru:'оставлять'},{base:'lend',past:'lent',part:'lent',ru:'одалживать'},
+        {base:'let',past:'let',part:'let',ru:'позволять'},{base:'light',past:'lit',part:'lit',ru:'зажигать'},{base:'lose',past:'lost',part:'lost',ru:'терять'},
+        {base:'make',past:'made',part:'made',ru:'делать'},{base:'mean',past:'meant',part:'meant',ru:'означать'},{base:'meet',past:'met',part:'met',ru:'встречать'},
+        {base:'pay',past:'paid',part:'paid',ru:'платить'},{base:'put',past:'put',part:'put',ru:'класть'},{base:'read',past:'read',part:'read',ru:'читать'},
+        {base:'ride',past:'rode',part:'ridden',ru:'ехать'},{base:'ring',past:'rang',part:'rung',ru:'звонить'},{base:'rise',past:'rose',part:'risen',ru:'подниматься'},
+        {base:'run',past:'ran',part:'run',ru:'бежать'},{base:'say',past:'said',part:'said',ru:'говорить'},{base:'see',past:'saw',part:'seen',ru:'видеть'},
+        {base:'send',past:'sent',part:'sent',ru:'посылать'},{base:'set',past:'set',part:'set',ru:'устанавливать'},{base:'shake',past:'shook',part:'shaken',ru:'трясти'},
+        {base:'shoot',past:'shot',part:'shot',ru:'стрелять'},{base:'show',past:'showed',part:'shown',ru:'показывать'},{base:'shut',past:'shut',part:'shut',ru:'закрывать'},
+        {base:'sing',past:'sang',part:'sung',ru:'петь'},{base:'sit',past:'sat',part:'sat',ru:'сидеть'},{base:'sleep',past:'slept',part:'slept',ru:'спать'},
+        {base:'smell',past:'smelt',part:'smelt',ru:'нюхать'},{base:'speak',past:'spoke',part:'spoken',ru:'говорить'},{base:'spell',past:'spelt',part:'spelt',ru:'произносить'},
+        {base:'spend',past:'spent',part:'spent',ru:'тратить'},{base:'stand',past:'stood',part:'stood',ru:'стоять'},{base:'steal',past:'stole',part:'stolen',ru:'красть'},
+        {base:'stick',past:'stuck',part:'stuck',ru:'приклеивать'},{base:'swim',past:'swam',part:'swum',ru:'плавать'},{base:'take',past:'took',part:'taken',ru:'брать'},
+        {base:'teach',past:'taught',part:'taught',ru:'учить'},{base:'tear',past:'tore',part:'torn',ru:'рвать'},{base:'tell',past:'told',part:'told',ru:'рассказывать'},
+        {base:'think',past:'thought',part:'thought',ru:'думать'},{base:'throw',past:'threw',part:'thrown',ru:'бросать'},{base:'understand',past:'understood',part:'understood',ru:'понимать'},
+        {base:'wake',past:'woke',part:'woken',ru:'просыпаться'},{base:'wear',past:'wore',part:'worn',ru:'носить'},{base:'win',past:'won',part:'won',ru:'побеждать'},
+        {base:'write',past:'wrote',part:'written',ru:'писать'}
+    ];
+
+    // ТЕСТЫ (по 10 заданий)
+    const futureBank1 = [
+        {type:'choice', text:'He ___ to school tomorrow.', a:'will going', b:'will go', c:'go', correct:'b', difficulty:'easy'},
+        {type:'choice', text:'She __ to school tomorrow.', a:'willn\'t go', b:'won\'t going', c:'won\'t go', correct:'c', difficulty:'easy'},
+        {type:'choice', text:'____ you come to the party?', a:'Will', b:'Do', c:'Are', correct:'a', difficulty:'easy'},
+        {type:'choice', text:'They ___ a new car next year.', a:'will buy', b:'will buying', c:'buy', correct:'a', difficulty:'easy'},
+        {type:'choice', text:'I ___ you with your homework.', a:'will help', b:'will helping', c:'help', correct:'a', difficulty:'easy'},
+        {type:'choice', text:'We ___ late for the meeting.', a:'won\'t be', b:'will not', c:'won\'t', correct:'a', difficulty:'easy'},
+        {type:'choice', text:'___ she come to the party?', a:'Will', b:'Does', c:'Is', correct:'a', difficulty:'easy'},
+        {type:'input', text:'I think it ___ (rain) tomorrow.', correct:'will rain', difficulty:'easy'},
+        {type:'input', text:'She ___ (not/come) to the party.', correct:'will not come', difficulty:'easy'},
+        {type:'input', text:'___ you ___ (help) me?', correct:'will help', difficulty:'easy'}
+    ];
+
+    const futureBank2 = [
+        {type:'input', text:'If you send this letter now, she ____ (receive) it tomorrow.', correct:'will receive', difficulty:'medium'},
+        {type:'input', text:'When she __ (do) her homework, she will go.', correct:'does', difficulty:'medium'},
+        {type:'input', text:'If I __ (be) you, I would study more.', correct:'were', difficulty:'medium'},
+        {type:'input', text:'When he ___ (come), we will start.', correct:'comes', difficulty:'medium'},
+        {type:'input', text:'If it ___ (rain), we will stay home.', correct:'rains', difficulty:'medium'},
+        {type:'input', text:'Unless you ___ (hurry), you will miss the bus.', correct:'hurry', difficulty:'medium'},
+        {type:'input', text:'I ___ (call) you when I arrive.', correct:'will call', difficulty:'medium'},
+        {type:'input', text:'If they ___ (invite) us, we will go.', correct:'invite', difficulty:'medium'},
+        {type:'input', text:'We ___ (have) dinner when he comes.', correct:'will have', difficulty:'medium'},
+        {type:'input', text:'What ___ you ___ (do) if you fail?', correct:'will do', difficulty:'medium'}
+    ];
+
+    const futureBank3 = [
+        {type:'input', text:'I promise I ___ (not/be) late again.', correct:'will not be', difficulty:'hard'},
+        {type:'input', text:'She ___ (probably/come) to the meeting.', correct:'will probably come', difficulty:'hard'},
+        {type:'input', text:'By this time next year, I ___ (finish) school.', correct:'will have finished', difficulty:'hard'},
+        {type:'input', text:'I\'m sure they ___ (win) the competition.', correct:'will win', difficulty:'hard'},
+        {type:'input', text:'Maybe we ___ (go) to the cinema.', correct:'will go', difficulty:'hard'},
+        {type:'input', text:'He ___ (not/likely/agree) with you.', correct:'will not likely agree', difficulty:'hard'},
+        {type:'input', text:'___ we ___ (meet) at 6?', correct:'shall meet', difficulty:'hard'},
+        {type:'input', text:'I ___ (be) there by 8 o\'clock.', correct:'will be', difficulty:'hard'},
+        {type:'input', text:'They ___ (probably/not/come).', correct:'will probably not come', difficulty:'hard'},
+        {type:'input', text:'By 2025, I ___ (graduate).', correct:'will have graduated', difficulty:'hard'}
+    ];
+
+    const futureBankBoss = [
+        {type:'choice', text:'I ___ my homework when you arrive.', a:'will finish', b:'will have finished', c:'am finishing', correct:'b', difficulty:'boss'},
+        {type:'input', text:'Unless he ___ (hurry), he will miss the bus.', correct:'hurries', difficulty:'boss'},
+        {type:'input', text:'The train ___ (leave) at 6 pm tomorrow.', correct:'leaves', difficulty:'boss'},
+        {type:'choice', text:'I ___ you if I have time.', a:'will help', b:'help', c:'am helping', correct:'a', difficulty:'boss'},
+        {type:'input', text:'By the time you arrive, we ___ (eat).', correct:'will have eaten', difficulty:'boss'},
+        {type:'input', text:'This time next week, I ___ (fly) to London.', correct:'will be flying', difficulty:'boss'},
+        {type:'input', text:'I ___ (finish) this project by Friday.', correct:'will have finished', difficulty:'boss'},
+        {type:'choice', text:'If I ___ you, I would wait.', a:'was', b:'were', c:'am', correct:'b', difficulty:'boss'},
+        {type:'input', text:'He ___ (not/arrive) before midnight.', correct:'will not arrive', difficulty:'boss'},
+        {type:'choice', text:'___ I ___ (open) the window?', a:'Will open', b:'Shall open', c:'Do open', correct:'b', difficulty:'boss'}
+    ];
+
+    const pastBanks = [
+        [
+            {type:'input', text:'I (watch) __ a movie yesterday.', correct:'watched', difficulty:'easy'},
+            {type:'input', text:'She (visit) __ her grandma.', correct:'visited', difficulty:'easy'}
+        ],
+        [
+            {type:'input', text:'He (go) __ to the cinema.', correct:'went', difficulty:'medium'}
+        ]
+    ];
+
+    const contBanks = [
+        [
+            {type:'choice', text:'I ___ TV at 8 pm.', a:'was watching', b:'were watching', c:'watched', correct:'a', difficulty:'easy'},
+            {type:'input', text:'She ___ (sleep) when I called.', correct:'was sleeping', difficulty:'easy'}
+        ]
+    ];
+
+    const textBanks = [
+        {
+            story: 'Last summer, my family and I went to London.',
+            questions: [
+                {question: 'Where did they go?', options: ['Paris', 'London'], correct: 'London', difficulty:'easy'}
+            ]
+        }
+    ];
+
+    const vocabWords = [
+        {ru: 'математика', en: 'mathematics'}, {ru: 'история', en: 'history'}, {ru: 'география', en: 'geography'},
+        {ru: 'биология', en: 'biology'}, {ru: 'физика', en: 'physics'}, {ru: 'химия', en: 'chemistry'}
+    ];
+
+    const bossWords = [
+        {ru: 'достижение', en: 'achievement'}, {ru: 'поведение', en: 'behaviour'},
+        {ru: 'соревнование', en: 'competition'}, {ru: 'развитие', en: 'development'}
+    ];
+
+    new Vue({
+        el: '#app',
+        data: {
+            main: 1,
+            futureSub: 1, pastSub:1, contSub:1, textSub:1, vocabSub:1,
+            irrMode: 'table',
+            irrPart: 1,
+            irrPartSelected: false,
+            irrTestQuestions: [],
+            irrTestResult: '',
+            irrTestFinished: false,
+            irrTestActive: false,
+            
+            completedTests: [],
+            testScores: {},
+            perfectTests: [],
+            bossesDefeated: 0,
+            
+            futureTestActive: false, pastTestActive:false, contTestActive:false,
+            textTestActive:false, vocabTestActive:false,
+            
+            futureTestFinished: false, pastTestFinished: false, contTestFinished: false,
+            textTestFinished: false, vocabTestFinished: false,
+            
+            futureTestResult: '', pastTestResult: '', contTestResult: '',
+            textTestResult: '', vocabTestResult: '',
+            
+            futureAnswers: [], futureInputs: [],
+            pastInputs: [], contAnswers: [], contInputs: [],
+            textAnswers: [], vocabInputs: [],
+            
+            currentFutureBank: [],
+            currentPastBank: [], currentContBank: [], currentTextBank: {}, currentVocabBank: [],
+            
+            // Аккаунты
+            users: [],
+            currentUser: null,
+            showAuthModal: false,
+            isRegister: false,
+            authUsername: '',
+            authPassword: '',
+            
+            // НОВЫЕ ФУНКЦИИ
+            userXP: 0,
+            userLevel: 1,
+            coins: 0,
+            dailyStreak: 0,
+            dailyClaimed: false,
+            errorNotes: localStorage.getItem('errorNotes') || '',
+            
+            // Магазин и бонусы
+            activeBonuses: [],
+            
+            // Супер-боссы
+            superBosses: [
+                {name: 'Супер-босс Future', desc: '10 ультра-сложных вопросов по Future', unlocked: false, questions: [
+                    {type:'input', text:'By 2030, I ___ (graduate) from university.', correct:'will have graduated'},
+                    {type:'choice', text:'I ___ my work by the time you come back.', a:'will finish', b:'will have finished', c:'will be finishing', correct:'b'},
+                    {type:'input', text:'Unless he ___ (study) hard, he will fail.', correct:'studies'}
+                ]},
+                {name: 'Супер-босс Past', desc: '10 ультра-сложных вопросов по Past', unlocked: false, questions: [
+                    {type:'input', text:'I wish I ___ (know) the answer yesterday.', correct:'had known'},
+                    {type:'choice', text:'He ___ for 2 hours when I arrived.', a:'waited', b:'had been waiting', c:'was waiting', correct:'b'},
+                    {type:'input', text:'After she ___ (finish) work, she went home.', correct:'had finished'}
+                ]}
+            ],
+            superBossesDefeated: 0,
+            superBossActive: false,
+            currentSuperBoss: null,
+            superAnswers: [],
+            superInputs: [],
+            superFinished: false,
+            superResult: '',
+            
+            // Игры
+            gameActive: false,
+            currentGame: null,
+            gameTitle: '',
+            
+            // Memory game
+            memoryWords: ['CAT', 'DOG', 'CAR', 'BOOK', 'HOUSE', 'APPLE', 'BALL', 'FISH', 'BIRD', 'TREE'],
+            memoryCards: [],
+            memoryMatched: 0,
+            
+            // Hangman
+            hangmanWords: ['PYTHON', 'JAVASCRIPT', 'ENGLISH', 'COMPUTER', 'KEYBOARD'],
+            hangmanWord: '',
+            hangmanDisplay: '',
+            hangmanAttempts: 7,
+            hangmanGuessed: [],
+            hangmanCorrect: [],
+            
+            // Speed run
+            speedWords: [
+                {ru: 'яблоко', en: 'apple'}, {ru: 'дом', en: 'house'}, {ru: 'машина', en: 'car'},
+                {ru: 'книга', en: 'book'}, {ru: 'собака', en: 'dog'}, {ru: 'кошка', en: 'cat'}
+            ],
+            speedWord: {},
+            speedAnswer: '',
+            speedTime: 4,
+            speedTimer: null,
+            speedExtraTime: 0,
+            
+            // Quiz
+            quizQuestions: [
+                {q: 'Столица Франции?', options: ['Париж', 'Лондон', 'Берлин'], correct: 'Париж'},
+                {q: 'Сколько дней в неделе?', options: ['5', '6', '7'], correct: '7'}
+            ],
+            quizCurrent: 0,
+            quizScore: 0,
+            quizQuestion: '',
+            quizOptions: [],
+            
+            futureBank1, futureBank2, futureBank3, futureBankBoss, pastBanks, contBanks, textBanks, vocabWords, bossWords,
+            irregularFull
+        },
+        computed: {
+            isTestActive() {
+                return this.futureTestActive || this.pastTestActive || this.contTestActive || 
+                       this.textTestActive || this.vocabTestActive || this.irrTestActive || this.superBossActive;
+            },
+            anyTestFinished() {
+                return this.futureTestFinished || this.pastTestFinished || this.contTestFinished || 
+                       this.textTestFinished || this.vocabTestFinished || this.irrTestFinished || this.superFinished;
+            },
+            totalCompleted() { return this.completedTests.length; },
+            perfectCount() { return this.perfectTests.length; },
+            totalQuests() { return 43; }
+        },
+        mounted() {
+            // Загружаем данные конкретного пользователя
+            const saved = localStorage.getItem('englishUsers');
+            if (saved) {
+                this.users = JSON.parse(saved);
+            }
+            
+            // Проверяем, был ли пользователь залогинен
+            const lastUser = localStorage.getItem('lastUser');
+            if (lastUser) {
+                const userData = localStorage.getItem(`user_${lastUser}`);
+                if (userData) {
+                    const data = JSON.parse(userData);
+                    this.currentUser = lastUser;
+                    this.completedTests = data.completedTests || [];
+                    this.testScores = data.testScores || {};
+                    this.perfectTests = data.perfectTests || [];
+                    this.bossesDefeated = data.bossesDefeated || 0;
+                    this.superBossesDefeated = data.superBossesDefeated || 0;
+                    this.userXP = data.userXP || 0;
+                    this.userLevel = data.userLevel || 1;
+                    this.coins = data.coins || 100;
+                    this.dailyStreak = data.dailyStreak || 0;
+                    this.superBosses = data.superBosses || this.superBosses;
+                }
+            }
+            
+            this.checkDailyStreak();
+        },
+        methods: {
+            setMain(m) { 
+                if (this.isTestActive) return;
+                this.main=m; 
+                this.resetAllTests();
+            },
+            
+            saveUserData() {
+                if (this.currentUser) {
+                    const data = {
+                        completedTests: this.completedTests,
+                        testScores: this.testScores,
+                        perfectTests: this.perfectTests,
+                        bossesDefeated: this.bossesDefeated,
+                        superBossesDefeated: this.superBossesDefeated,
+                        userXP: this.userXP,
+                        userLevel: this.userLevel,
+                        coins: this.coins,
+                        dailyStreak: this.dailyStreak,
+                        superBosses: this.superBosses
+                    };
+                    localStorage.setItem(`user_${this.currentUser}`, JSON.stringify(data));
+                    localStorage.setItem('lastUser', this.currentUser);
+                }
+                
+                // Сохраняем список пользователей
+                localStorage.setItem('englishUsers', JSON.stringify(this.users));
+            },
+            
+            handleAuth() {
+                if (!this.authUsername || !this.authPassword) {
+                    alert('Заполните все поля');
+                    return;
+                }
+                
+                if (this.isRegister) {
+                    if (this.users.find(u => u.username === this.authUsername)) {
+                        alert('Пользователь уже существует');
+                        return;
+                    }
+                    this.users.push({
+                        username: this.authUsername,
+                        password: this.authPassword
+                    });
+                    this.currentUser = this.authUsername;
+                    this.coins = 100; // Стартовые монеты
+                } else {
+                    const user = this.users.find(u => u.username === this.authUsername && u.password === this.authPassword);
+                    if (user) {
+                        this.currentUser = this.authUsername;
+                        // Загружаем данные пользователя
+                        const userData = localStorage.getItem(`user_${this.authUsername}`);
+                        if (userData) {
+                            const data = JSON.parse(userData);
+                            this.completedTests = data.completedTests || [];
+                            this.testScores = data.testScores || {};
+                            this.perfectTests = data.perfectTests || [];
+                            this.bossesDefeated = data.bossesDefeated || 0;
+                            this.superBossesDefeated = data.superBossesDefeated || 0;
+                            this.userXP = data.userXP || 0;
+                            this.userLevel = data.userLevel || 1;
+                            this.coins = data.coins || 100;
+                            this.dailyStreak = data.dailyStreak || 0;
+                            this.superBosses = data.superBosses || this.superBosses;
+                        } else {
+                            this.coins = 100;
+                        }
+                    } else {
+                        alert('Неверное имя или пароль');
+                        return;
+                    }
+                }
+                
+                this.showAuthModal = false;
+                this.authUsername = '';
+                this.authPassword = '';
+                this.saveUserData();
+                this.checkDailyStreak();
+            },
+            
+            logout() {
+                this.saveUserData();
+                this.currentUser = null;
+                this.resetAllTests();
+                localStorage.removeItem('lastUser');
+            },
+            
+            getProgressClass(testId, isBoss = false) {
+                if (!this.testScores[testId]) return '';
+                const score = this.testScores[testId];
+                if (score >= 100) return 'progress-100';
+                if (score >= 75) return 'progress-75';
+                if (score >= 65) return 'progress-65';
+                if (score >= 50) return 'progress-50';
+                if (score >= 30) return 'progress-30';
+                return '';
+            },
+            
+            resetAllTests() {
+                this.futureTestActive = this.pastTestActive = this.contTestActive = false;
+                this.textTestActive = this.vocabTestActive = this.irrTestActive = false;
+                this.superBossActive = false;
+                this.futureTestFinished = this.pastTestFinished = this.contTestFinished = false;
+                this.textTestFinished = this.vocabTestFinished = this.irrTestFinished = false;
+                this.superFinished = false;
+                this.futureAnswers = []; this.futureInputs = [];
+                this.pastInputs = []; this.contAnswers = []; this.contInputs = [];
+                this.textAnswers = []; this.vocabInputs = [];
+                this.superAnswers = []; this.superInputs = [];
+            },
+            
+            selectIrrPart(n) {
+                this.irrPart = n;
+                this.irrPartSelected = true;
+                let start = (n-1)*10;
+                let end = n===9 ? 91 : start+10;
+                this.irrTestQuestions = this.irregularFull.slice(start, end).map(v => ({
+                    ru: v.ru, answer: '',
+                    correctBase: v.base, correctPast: v.past, correctPart: v.part
+                }));
+            },
+            
+            irrStart(n) { return (n-1)*10+1; },
+            irrEnd(n) { return n===9 ? 91 : n*10; },
+            irrFirstVerb(n) {
+                const start = (n-1)*10;
+                return this.irregularFull[start]?.base || '';
+            },
+            irrLastVerb(n) {
+                const end = n===9 ? 90 : (n-1)*10+9;
+                return this.irregularFull[end]?.base || '';
+            },
+            
+            startCurrentTest() {
+                if (!this.currentUser) {
+                    alert('Сначала войдите в систему');
+                    return;
+                }
+                
+                if (this.main === 1) {
+                    if (this.futureSub === 1) this.currentFutureBank = this.futureBank1;
+                    else if (this.futureSub === 2) this.currentFutureBank = this.futureBank2;
+                    else if (this.futureSub === 3) this.currentFutureBank = this.futureBank3;
+                    else this.currentFutureBank = this.futureBankBoss;
+                    
+                    this.futureAnswers = new Array(this.currentFutureBank.length).fill('');
+                    this.futureInputs = new Array(this.currentFutureBank.length).fill('');
+                    this.futureTestActive = true;
+                    this.futureTestFinished = false;
+                } 
+                else if (this.main === 2) {
+                    this.currentPastBank = this.pastBanks[this.pastSub-1];
+                    this.pastInputs = new Array(this.currentPastBank.length).fill('');
+                    this.pastTestActive = true;
+                    this.pastTestFinished = false;
+                } 
+                else if (this.main === 3) {
+                    this.currentContBank = this.contBanks[this.contSub-1];
+                    this.contAnswers = new Array(this.currentContBank.length).fill('');
+                    this.contInputs = new Array(this.currentContBank.length).fill('');
+                    this.contTestActive = true;
+                    this.contTestFinished = false;
+                } 
+                else if (this.main === 5) {
+                    if (this.irrMode === 'test' && this.irrPartSelected) {
+                        this.irrTestActive = true;
+                        this.irrTestFinished = false;
+                        this.irrTestResult = '';
+                    } else if (this.irrMode === 'boss') {
+                        this.irrTestQuestions = this.irregularFull.slice(0, 20).map(v => ({
+                            ru: v.ru, answer: '',
+                            correctBase: v.base, correctPast: v.past, correctPart: v.part
+                        }));
+                        this.irrTestActive = true;
+                        this.irrTestFinished = false;
+                        this.irrTestResult = '';
+                    } else {
+                        alert('Сначала выберите тест');
+                    }
+                } 
+                else if (this.main === 6) {
+                    this.currentTextBank = this.textBanks[this.textSub-1];
+                    this.textAnswers = new Array(this.currentTextBank.questions.length).fill('');
+                    this.textTestActive = true;
+                    this.textTestFinished = false;
+                } 
+                else if (this.main === 7) {
+                    if (this.vocabSub <= 10) {
+                        const start = (this.vocabSub - 1) * 10;
+                        this.currentVocabBank = this.vocabWords.slice(start, start + 10);
+                    } else {
+                        this.currentVocabBank = this.bossWords;
+                    }
+                    this.vocabInputs = new Array(this.currentVocabBank.length).fill('');
+                    this.vocabTestActive = true;
+                    this.vocabTestFinished = false;
+                }
+            },
+            
+            finishCurrentTest() {
+                if (this.main === 1) this.finishFutureTest();
+                else if (this.main === 2) this.finishPastTest();
+                else if (this.main === 3) this.finishContTest();
+                else if (this.main === 5) this.finishIrrTest();
+                else if (this.main === 6) this.finishTextTest();
+                else if (this.main === 7) this.finishVocabTest();
+            },
+            
+            finishFutureTest() {
+                let score = 0;
+                let html = '<h3>Результаты Future Simple:</h3>';
+                
+                this.currentFutureBank.forEach((item, i) => {
+                    let user = item.type === 'choice' ? this.futureAnswers[i] || '' : (this.futureInputs[i] || '').trim().toLowerCase().replace(/\s+/g, '');
+                    let correct = item.correct.toLowerCase().replace(/\s+/g, '');
+                    let ok = user === correct;
+                    if (ok) score++;
+                    
+                    let diffIcon = item.difficulty === 'easy' ? '🟢' : item.difficulty === 'medium' ? '🟡' : item.difficulty === 'hard' ? '🔴' : '👑';
+                    html += `<p>${diffIcon} ${i+1}. ${ok ? '✅' : '❌'} Ваш: ${user || 'пусто'}</p>`;
+                });
+                
+                const percent = Math.round(score / this.currentFutureBank.length * 100);
+                html += `<p style="font-size:1.4rem;"><b>✅ ${score}/${this.currentFutureBank.length} (${percent}%)</b></p>`;
+                
+                const testId = 'future' + this.futureSub;
+                if (!this.testScores[testId] || percent > this.testScores[testId]) this.testScores[testId] = percent;
+                if (!this.completedTests.includes(testId)) this.completedTests.push(testId);
+                if (percent === 100 && !this.perfectTests.includes(testId)) this.perfectTests.push(testId);
+                if (this.futureSub === 4 && percent >= 70 && !this.completedTests.includes('future4')) this.bossesDefeated++;
+                
+                let coinsEarned = Math.floor(score * 1.5);
+                let xpEarned = score * 8;
+                
+                if (this.activeBonuses.find(b => b.type === 'double')) {
+                    coinsEarned *= 2;
+                    this.activeBonuses = this.activeBonuses.filter(b => b.type !== 'double');
+                }
+                
+                this.coins += coinsEarned;
+                this.userXP += xpEarned;
+                
+                if (this.userXP >= this.userLevel * 100) {
+                    this.userLevel++;
+                }
+                
+                this.futureTestResult = html;
+                this.futureTestActive = false;
+                this.futureTestFinished = true;
+                this.saveUserData();
+            },
+            
+            finishPastTest() {
+                let score = 0;
+                let html = '<h3>Результаты Past Simple:</h3>';
+                
+                this.currentPastBank.forEach((item, i) => {
+                    let user = (this.pastInputs[i] || '').trim().toLowerCase().replace(/\s+/g, '');
+                    let correct = item.correct.toLowerCase().replace(/\s+/g, '');
+                    let ok = user === correct;
+                    if (ok) score++;
+                    
+                    let diffIcon = item.difficulty === 'easy' ? '🟢' : item.difficulty === 'medium' ? '🟡' : item.difficulty === 'hard' ? '🔴' : '👑';
+                    html += `<p>${diffIcon} ${i+1}. ${ok ? '✅' : '❌'} Ваш: ${user || 'пусто'}</p>`;
+                });
+                
+                const percent = Math.round(score / this.currentPastBank.length * 100);
+                html += `<p style="font-size:1.4rem;"><b>✅ ${score}/${this.currentPastBank.length} (${percent}%)</b></p>`;
+                
+                const testId = 'past' + this.pastSub;
+                if (!this.testScores[testId] || percent > this.testScores[testId]) this.testScores[testId] = percent;
+                if (!this.completedTests.includes(testId)) this.completedTests.push(testId);
+                if (percent === 100 && !this.perfectTests.includes(testId)) this.perfectTests.push(testId);
+                if (this.pastSub === 6 && percent >= 70 && !this.completedTests.includes('past6')) this.bossesDefeated++;
+                
+                this.coins += Math.floor(score * 1.5);
+                this.userXP += score * 8;
+                if (this.userXP >= this.userLevel * 100) {
+                    this.userLevel++;
+                }
+                
+                this.pastTestResult = html;
+                this.pastTestActive = false;
+                this.pastTestFinished = true;
+                this.saveUserData();
+            },
+            
+            finishContTest() {
+                let score = 0;
+                let html = '<h3>Результаты Past Continuous:</h3>';
+                
+                this.currentContBank.forEach((item, i) => {
+                    let user = item.type === 'choice' ? this.contAnswers[i] || '' : (this.contInputs[i] || '').trim().toLowerCase().replace(/\s+/g, '');
+                    let correct = item.correct.toLowerCase().replace(/\s+/g, '');
+                    let ok = user === correct;
+                    if (ok) score++;
+                    
+                    let diffIcon = item.difficulty === 'easy' ? '🟢' : item.difficulty === 'medium' ? '🟡' : item.difficulty === 'hard' ? '🔴' : '👑';
+                    html += `<p>${diffIcon} ${i+1}. ${ok ? '✅' : '❌'} Ваш: ${user || 'пусто'}</p>`;
+                });
+                
+                const percent = Math.round(score / this.currentContBank.length * 100);
+                html += `<p style="font-size:1.4rem;"><b>✅ ${score}/${this.currentContBank.length} (${percent}%)</b></p>`;
+                
+                const testId = 'cont' + this.contSub;
+                if (!this.testScores[testId] || percent > this.testScores[testId]) this.testScores[testId] = percent;
+                if (!this.completedTests.includes(testId)) this.completedTests.push(testId);
+                if (percent === 100 && !this.perfectTests.includes(testId)) this.perfectTests.push(testId);
+                if (this.contSub === 6 && percent >= 70 && !this.completedTests.includes('cont6')) this.bossesDefeated++;
+                
+                this.coins += Math.floor(score * 1.5);
+                this.userXP += score * 8;
+                if (this.userXP >= this.userLevel * 100) {
+                    this.userLevel++;
+                }
+                
+                this.contTestResult = html;
+                this.contTestActive = false;
+                this.contTestFinished = true;
+                this.saveUserData();
+            },
+            
+            finishTextTest() {
+                let score = 0;
+                let html = '<h3>Результаты по тексту:</h3>';
+                
+                this.currentTextBank.questions.forEach((item, i) => {
+                    let ok = this.textAnswers[i] === item.correct;
+                    if (ok) score++;
+                    
+                    let diffIcon = item.difficulty === 'easy' ? '🟢' : item.difficulty === 'medium' ? '🟡' : item.difficulty === 'hard' ? '🔴' : '👑';
+                    html += `<p>${diffIcon} ${i+1}. ${ok ? '✅' : '❌'} Ваш: ${this.textAnswers[i] || 'не выбран'}</p>`;
+                });
+                
+                const percent = Math.round(score / this.currentTextBank.questions.length * 100);
+                html += `<p style="font-size:1.4rem;"><b>✅ ${score}/${this.currentTextBank.questions.length} (${percent}%)</b></p>`;
+                
+                const testId = 'text' + this.textSub;
+                if (!this.testScores[testId] || percent > this.testScores[testId]) this.testScores[testId] = percent;
+                if (!this.completedTests.includes(testId)) this.completedTests.push(testId);
+                if (percent === 100 && !this.perfectTests.includes(testId)) this.perfectTests.push(testId);
+                if (this.textSub === 6 && percent >= 70 && !this.completedTests.includes('text6')) this.bossesDefeated++;
+                
+                this.coins += Math.floor(score * 2);
+                this.userXP += score * 10;
+                if (this.userXP >= this.userLevel * 100) {
+                    this.userLevel++;
+                }
+                
+                this.textTestResult = html;
+                this.textTestActive = false;
+                this.textTestFinished = true;
+                this.saveUserData();
+            },
+            
+            finishVocabTest() {
+                let score = 0;
+                let html = '<h3>Результаты перевода:</h3>';
+                
+                this.currentVocabBank.forEach((item, i) => {
+                    let user = (this.vocabInputs[i] || '').trim().toLowerCase().replace(/\s+/g, '');
+                    let ok = user === item.en.toLowerCase().replace(/\s+/g, '');
+                    if (ok) score++;
+                    html += `<p>${i+1}. ${ok ? '✅' : '❌'} ${item.ru} — ваш: ${user || 'пусто'}</p>`;
+                });
+                
+                const percent = Math.round(score / this.currentVocabBank.length * 100);
+                html += `<p style="font-size:1.4rem;"><b>✅ ${score}/${this.currentVocabBank.length} (${percent}%)</b></p>`;
+                
+                const testId = 'vocab' + this.vocabSub;
+                if (!this.testScores[testId] || percent > this.testScores[testId]) this.testScores[testId] = percent;
+                if (!this.completedTests.includes(testId)) this.completedTests.push(testId);
+                if (percent === 100 && !this.perfectTests.includes(testId)) this.perfectTests.push(testId);
+                if (this.vocabSub === 11 && percent >= 70 && !this.completedTests.includes('vocab11')) this.bossesDefeated++;
+                
+                this.coins += Math.floor(score * 1.5);
+                this.userXP += score * 8;
+                if (this.userXP >= this.userLevel * 100) {
+                    this.userLevel++;
+                }
+                
+                this.vocabTestResult = html;
+                this.vocabTestActive = false;
+                this.vocabTestFinished = true;
+                this.saveUserData();
+            },
+            
+            finishIrrTest() {
+                if (!this.irrTestActive) return;
+                let score = 0;
+                let html = '<h3>Результаты неправильных глаголов:</h3>';
+                
+                this.irrTestQuestions.forEach((q, i) => {
+                    let forms = (q.answer || '').trim().toLowerCase().split(/\s+/);
+                    let baseOk = forms[0] === q.correctBase;
+                    let pastOk = forms[1] && (forms[1] === q.correctPast || (q.correctPast.includes('/') && q.correctPast.split('/').map(s => s.trim()).includes(forms[1])));
+                    let partOk = forms[2] && (forms[2] === q.correctPart || (q.correctPart.includes('/') && q.correctPart.split('/').map(s => s.trim()).includes(forms[2])));
+                    let ok = baseOk && pastOk && partOk;
+                    if (ok) score++;
+                    html += `<p>${i+1}. ${ok ? '✅' : '❌'} ${q.ru} — ваш: ${q.answer || 'пусто'}</p>`;
+                });
+                
+                const percent = Math.round(score / this.irrTestQuestions.length * 100);
+                html += `<p style="font-size:1.4rem;"><b>✅ ${score}/${this.irrTestQuestions.length} (${percent}%)</b></p>`;
+                
+                const testId = this.irrMode === 'boss' ? 'irrboss' : 'irr' + this.irrPart;
+                if (!this.testScores[testId] || percent > this.testScores[testId]) this.testScores[testId] = percent;
+                if (!this.completedTests.includes(testId)) this.completedTests.push(testId);
+                if (percent === 100 && !this.perfectTests.includes(testId)) this.perfectTests.push(testId);
+                if (this.irrMode === 'boss' && percent >= 70 && !this.completedTests.includes('irrboss')) this.bossesDefeated++;
+                
+                this.coins += Math.floor(score * 2);
+                this.userXP += score * 10;
+                if (this.userXP >= this.userLevel * 100) {
+                    this.userLevel++;
+                }
+                
+                this.irrTestResult = html;
+                this.irrTestFinished = true;
+                this.saveUserData();
+            },
+            
+            exitCurrentTest() {
+                this.resetAllTests();
+            },
+            
+            loadIrrTest(p) {
+                if (this.irrTestActive) {
+                    this.irrPart = p;
+                    let start = (p-1)*10;
+                    let end = p === 9 ? 91 : start + 10;
+                    this.irrTestQuestions = this.irregularFull.slice(start, end).map(v => ({
+                        ru: v.ru, answer: '',
+                        correctBase: v.base, correctPast: v.past, correctPart: v.part
+                    }));
+                    this.irrTestResult = '';
+                    this.irrTestFinished = false;
+                }
+            },
+            
+            showResetConfirm() {
+                if (confirm('Вы уверены, что хотите сбросить весь прогресс?')) {
+                    this.completedTests = [];
+                    this.testScores = {};
+                    this.perfectTests = [];
+                    this.bossesDefeated = 0;
+                    this.superBossesDefeated = 0;
+                    this.userXP = 0;
+                    this.userLevel = 1;
+                    this.coins = 100;
+                    this.superBosses = [
+                        {name: 'Супер-босс Future', desc: '10 ультра-сложных вопросов по Future', unlocked: false, questions: this.superBosses[0].questions},
+                        {name: 'Супер-босс Past', desc: '10 ультра-сложных вопросов по Past', unlocked: false, questions: this.superBosses[1].questions}
+                    ];
+                    this.saveUserData();
+                    alert('Прогресс сброшен!');
+                }
+            },
+            
+            checkDailyStreak() {
+                const last = localStorage.getItem(`lastLogin_${this.currentUser}`);
+                const today = new Date().toDateString();
+                
+                if (last === today) {
+                    this.dailyClaimed = true;
+                    return;
+                }
+                
+                if (last === new Date(Date.now() - 86400000).toDateString()) {
+                    this.dailyStreak++;
+                } else {
+                    this.dailyStreak = 1;
+                }
+                
+                localStorage.setItem(`lastLogin_${this.currentUser}`, today);
+                this.dailyClaimed = false;
+                this.saveUserData();
+            },
+            
+            claimDailyReward() {
+                this.coins += 30;
+                this.dailyClaimed = true;
+                this.saveUserData();
+                alert('+30 монет!');
+            },
+            
+            saveErrorNotes() {
+                localStorage.setItem(`errorNotes_${this.currentUser}`, this.errorNotes);
+                alert('Сохранено!');
+            },
+            
+            // Магазин
+            buyItem(type) {
+                if (type === 'hint' && this.coins >= 100) {
+                    this.coins -= 100;
+                    this.activeBonuses.push({type: 'hint', name: 'Подсказка', uses: 1});
+                    alert('Подсказка куплена!');
+                } else if (type === 'double' && this.coins >= 200) {
+                    this.coins -= 200;
+                    this.activeBonuses.push({type: 'double', name: 'Двойные монеты', uses: 1});
+                    alert('Двойные монеты активированы!');
+                } else if (type === 'life' && this.coins >= 80) {
+                    this.coins -= 80;
+                    this.activeBonuses.push({type: 'life', name: 'Доп. жизнь', uses: 1});
+                    alert('+1 жизнь куплена!');
+                } else if (type === 'time' && this.coins >= 100) {
+                    this.coins -= 100;
+                    this.speedExtraTime = 3;
+                    alert('+3 секунды в Speed Run!');
+                } else if (type === 'theme' && this.coins >= 500) {
+                    this.coins -= 500;
+                    document.querySelector('.user-avatar').style.background = 'linear-gradient(135deg, #ffd700, #ffa500)';
+                    alert('Золотая тема активирована!');
+                } else if (type === 'superFuture' && this.coins >= 1000) {
+                    this.coins -= 1000;
+                    this.superBosses[0].unlocked = true;
+                    alert('Супер-босс Future открыт!');
+                } else if (type === 'superPast' && this.coins >= 1000) {
+                    this.coins -= 1000;
+                    this.superBosses[1].unlocked = true;
+                    alert('Супер-босс Past открыт!');
+                } else {
+                    alert('Недостаточно монет!');
+                }
+                this.saveUserData();
+            },
+            
+            // Супер-боссы
+            startSuperBoss(index) {
+                this.currentSuperBoss = this.superBosses[index];
+                this.superAnswers = new Array(this.currentSuperBoss.questions.length).fill('');
+                this.superInputs = new Array(this.currentSuperBoss.questions.length).fill('');
+                this.superBossActive = true;
+                this.superFinished = false;
+                this.superResult = '';
+            },
+            
+            finishSuperBoss() {
+                let score = 0;
+                let html = '<h3>Результаты битвы с супер-боссом:</h3>';
+                
+                this.currentSuperBoss.questions.forEach((item, i) => {
+                    let user = item.type === 'choice' ? this.superAnswers[i] || '' : (this.superInputs[i] || '').trim().toLowerCase().replace(/\s+/g, '');
+                    let correct = item.correct.toLowerCase().replace(/\s+/g, '');
+                    let ok = user === correct;
+                    if (ok) score++;
+                    
+                    html += `<p>${i+1}. ${ok ? '✅' : '❌'} Ваш: ${user || 'пусто'}</p>`;
+                });
+                
+                const percent = Math.round(score / this.currentSuperBoss.questions.length * 100);
+                html += `<p style="font-size:1.4rem;"><b>✅ ${score}/${this.currentSuperBoss.questions.length} (${percent}%)</b></p>`;
+                
+                if (score >= 2) {
+                    this.coins += 200;
+                    this.superBossesDefeated++;
+                    html += `<p style="color:#ff0000;"><b>👾 Босс побежден! +200 монет</b></p>`;
+                }
+                
+                this.superResult = html;
+                this.superFinished = true;
+                this.saveUserData();
+            },
+            
+            // ИГРЫ
+            openGame(game) {
+                this.gameActive = true;
+                this.currentGame = game;
+                
+                if (game === 'memory') {
+                    this.gameTitle = 'Memory Match';
+                    this.resetMemory();
+                } else if (game === 'hangman') {
+                    this.gameTitle = 'Виселица';
+                    this.resetHangman();
+                } else if (game === 'speed') {
+                    this.gameTitle = 'Speed Run';
+                    this.resetSpeed();
+                } else if (game === 'quiz') {
+                    this.gameTitle = 'Быстрый опрос';
+                    this.resetQuiz();
+                }
+            },
+            
+            closeGame() {
+                this.gameActive = false;
+                this.currentGame = null;
+                if (this.speedTimer) clearInterval(this.speedTimer);
+            },
+            
+            // Memory Game
+            resetMemory() {
+                let cards = [];
+                this.memoryWords.forEach((word, i) => {
+                    cards.push({ id: i, word: word, flipped: false, matched: false });
+                    cards.push({ id: i, word: word, flipped: false, matched: false });
+                });
+                this.memoryCards = cards.sort(() => Math.random() - 0.5);
+                this.memoryMatched = 0;
+            },
+            
+            flipCard(index) {
+                if (this.memoryCards[index].matched) return;
+                if (this.memoryCards[index].flipped) return;
+                
+                this.memoryCards[index].flipped = true;
+                
+                const flipped = this.memoryCards.filter(c => c.flipped && !c.matched);
+                if (flipped.length === 2) {
+                    if (flipped[0].id === flipped[1].id) {
+                        flipped.forEach(c => c.matched = true);
+                        this.memoryMatched++;
+                        if (this.memoryMatched === 10) {
+                            const reward = Math.floor(Math.random() * 20) + 10;
+                            this.coins += reward;
+                            alert(`🎉 Ты выиграл! +${reward} монет`);
+                            this.saveUserData();
+                        }
+                    }
+                    setTimeout(() => {
+                        this.memoryCards.forEach(c => {
+                            if (!c.matched) c.flipped = false;
+                        });
+                    }, 1000);
+                }
+            },
+            
+            // Hangman
+            resetHangman() {
+                this.hangmanWord = this.hangmanWords[Math.floor(Math.random() * this.hangmanWords.length)];
+                this.hangmanDisplay = '_'.repeat(this.hangmanWord.length).split('').join(' ');
+                this.hangmanAttempts = 7;
+                this.hangmanGuessed = [];
+                this.hangmanCorrect = [];
+            },
+            
+            guessLetter(letter) {
+                if (this.hangmanGuessed.includes(letter)) return;
+                if (this.hangmanAttempts <= 0) return;
+                
+                this.hangmanGuessed.push(letter);
+                
+                if (this.hangmanWord.includes(letter)) {
+                    this.hangmanCorrect.push(letter);
+                    let display = '';
+                    for (let i = 0; i < this.hangmanWord.length; i++) {
+                        display += this.hangmanGuessed.includes(this.hangmanWord[i]) ? this.hangmanWord[i] : '_';
+                        if (i < this.hangmanWord.length - 1) display += ' ';
+                    }
+                    this.hangmanDisplay = display;
+                    
+                    if (!display.includes('_')) {
+                        const reward = Math.floor(Math.random() * 25) + 15;
+                        this.coins += reward;
+                        alert(`🎉 Ты угадал слово! +${reward} монет`);
+                        this.saveUserData();
+                    }
+                } else {
+                    this.hangmanAttempts--;
+                    if (this.hangmanAttempts === 0) {
+                        alert(`💀 Ты проиграл! Слово: ${this.hangmanWord}`);
+                    }
+                }
+            },
+            
+            // Speed Run
+            resetSpeed() {
+                this.speedWord = this.speedWords[Math.floor(Math.random() * this.speedWords.length)];
+                this.speedAnswer = '';
+                this.speedTime = 4 + this.speedExtraTime;
+                this.speedExtraTime = 0;
+                
+                if (this.speedTimer) clearInterval(this.speedTimer);
+                this.speedTimer = setInterval(() => {
+                    this.speedTime--;
+                    if (this.speedTime <= 0) {
+                        clearInterval(this.speedTimer);
+                        alert(`⏰ Время вышло! Правильно: ${this.speedWord.en}`);
+                        this.resetSpeed();
+                    }
+                }, 1000);
+            },
+            
+            checkSpeed() {
+                if (this.speedAnswer.toLowerCase().trim() === this.speedWord.en) {
+                    clearInterval(this.speedTimer);
+                    const reward = Math.floor(Math.random() * 15) + 5;
+                    this.coins += reward;
+                    alert(`✅ Правильно! +${reward} монет`);
+                    this.saveUserData();
+                    this.resetSpeed();
+                } else {
+                    alert('❌ Неправильно!');
+                }
+            },
+            
+            // Quiz
+            resetQuiz() {
+                this.quizCurrent = 0;
+                this.quizScore = 0;
+                this.nextQuiz();
+            },
+            
+            nextQuiz() {
+                if (this.quizCurrent < this.quizQuestions.length) {
+                    this.quizQuestion = this.quizQuestions[this.quizCurrent].q;
+                    this.quizOptions = this.quizQuestions[this.quizCurrent].options;
+                } else {
+                    const reward = Math.floor(Math.random() * 30) + 20;
+                    this.coins += reward;
+                    alert(`🎉 Игра окончена! Правильных ответов: ${this.quizScore}/10 +${reward} монет`);
+                    this.saveUserData();
+                    this.closeGame();
+                }
+            },
+            
+            checkQuiz(opt) {
+                if (opt === this.quizQuestions[this.quizCurrent].correct) {
+                    this.quizScore++;
+                }
+                this.quizCurrent++;
+                this.nextQuiz();
+            }
+        }
+    });
+</script>
+</body>
+</html>
